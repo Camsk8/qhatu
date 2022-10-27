@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Products;
 
 class ProductsController extends Controller
 {
     function __construct()
     {
-        this-> middleware('permission:ver-products| crear-products| editar-products| borrar-products')->only('index');
-        this-> middleware('permission:crear-products|',['only'=>['create','store']]);
-        this-> middleware('permission:editar-products|',['only'=>['edit','update']]);
-        this-> middleware('permission:borrar-products|',['only'=>['destroy']]);
-  }
+         $this->middleware('permission:ver-producto|crear-producto|editar-producto|borrar-producto')->only('index');
+         $this->middleware('permission:crear-producto', ['only' => ['create','store']]);
+         $this->middleware('permission:editar-producto', ['only' => ['edit','update']]);
+         $this->middleware('permission:borrar-producto', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-       $products = Products::paginate(5);
-       return view('products.index');
+    {       
+         $products = Products::paginate(5);
+         return view('productos.index',compact('products'));
     }
 
     /**
@@ -32,7 +33,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view ('products.crear');
+        return view('productos.create');
     }
 
     /**
@@ -43,12 +44,19 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([ 
-            'titulo'=>'required',
-            'contenido'=>'required'
+        request()->validate([
+            'nombre' => 'required',
+            'valor' => 'required',
+            'imagen' => 'required',
+            'descripcion' => 'required',
+            'fechaInicio' => 'required',
+            'fechaFin' => 'required',
+
         ]);
+    
         Products::create($request->all());
-        return redirect()->route('products.index');
+    
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -70,7 +78,7 @@ class ProductsController extends Controller
      */
     public function edit(Products $products)
     {
-        return view('products.editar',compact('product'));
+        return view('productos.edit',compact('products'));
     }
 
     /**
@@ -80,14 +88,19 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Products $products)
+    public function update(Request $request, Products $products)
     {
-        request()->validate([
-            'titulo'=>'required',
-            'contenido'=>'required'
+         request()->validate([
+            'nombre' => 'required',
+            'valor' => 'required',
+            'imagen' => 'required',
+            'descripcion' => 'required',
+            'fechaInicio' => 'required',
+            'fechaFin' => 'required',
         ]);
+    
         $products->update($request->all());
-        return redirect()->route('products.index');
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -99,6 +112,7 @@ class ProductsController extends Controller
     public function destroy(Products $products)
     {
         $products->delete();
-        return redirect()->route('products.index');
+    
+        return redirect()->route('productos.index');
     }
 }

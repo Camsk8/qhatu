@@ -19,7 +19,6 @@ use App\Http\Controllers\productsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,14 +29,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['middlewere ' =>['auth']], function () {
-    Route::resource('roles', rolController::class);
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
-    Route::resource('products', productsController::class);
+    Route::resource('products', ProductsController::class);
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();

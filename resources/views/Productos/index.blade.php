@@ -10,45 +10,55 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning"href="{{ route('usuarios.create') }}">Nuevo</a>
-                            <table class="table table-striped mt-2">
-                                <thead style="background-color: black">
-                                    <th style="display: none;">Id<th>
-                                    <th style="color:aqua ;">Nombre<th>
-                                    <th style="color:aqua ;">Valor<th>
-                                    <th style="color:aqua ;">Imagen<th>
-                                    <th style="color:aqua ;">Descripcion<th>
-                                    <th style="color:aqua ;">fechaInicio<th>
-                                    <th style="color:aqua ;">fechaFin<th>
-                                </thead>
-                                <tbody>
-                                    @foreach ($products as $product)
-                                        <tr>
-                                            <td style="display: none">{{$products->Id}}</td>
-                                            <td>{{$products->Nombre}}</td>
-                                            <td>{{$products->}}Valor</td>
-                                            <td>{{$products->}}Imagen</td>
-                                            <td>{{$products->}}Descripcion</td>
-                                            <td>{{$products->}}fechaInicio</td>
-                                            <td>{{$products->}}fechaFin</td>
-                                            <td>
-                                             <form action="{{route('products.destroy',$products->id)}}"method="POST">
-                                                @can('editar-product')
-                                                <a class="btn btn-info"href="{{route('products.edit',$products->id)}}">Editar</a>
-                                                @endcan
-                                                @csrf
-                                                @method('DELETE')
-                                                @can('borrar-product')
-                                                <button type="submit"class="btn btn-danger">Borrar</button>
-                                                @endcan
-                                             </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                
+            
+                        @can('crear-blog')
+                        <a class="btn btn-warning" href="{{ route('products.create') }}">Nuevo</a>
+                        @endcan
+            
+                        <table class="table table-striped mt-2">
+                                <thead style="background-color:#6777ef">                                     
+                                    <th style="display: none;">ID</th>
+                                    <th style="color:#fff;">nombre</th>
+                                    <th style="color:#fff;">valor</th>                                    
+                                    <th style="color:#fff;">imagen</th>   
+                                    <th style="color:#fff;">descripcion</th>
+                                    <th style="color:#fff;">fechaInicio</th>   
+                                    <th style="color:#fff;">fechaFin</th>
+                                    <th style="color:#fff;">Acciones</th>                                                              
+
+                              </thead>
+                              <tbody>
+                            @foreach ($products as $product)
+                            <tr>
+                                <td style="display: none;">{{ $product->id }}</td>                                
+                                <td>{{ $product->nombre }}</td>
+                                <td>{{ $product->valor }}</td>
+                                <td>{{ $product->imagen }}</td>
+                                <td>{{ $product->descripcion }}</td>
+                                <td>{{ $product->fechaInicio }}</td>
+                                <td>{{ $product->fechaFin }}</td>
+                                <td>
+                                    <form action="{{ route('products.update',$product->id) }}" method="POST">                                        
+                                        @can('editar-producto')
+                                        <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Editar</a>
+                                    @endcan
+                                    
+                                    <form action="{{ route('products.destroy',$product->id) }}" method="POST">                                        
+                                    @can('borrar-producto')
+                                    <a class="btn btn-danger" href="{{ route('products.destroy',$product->id) }}"></a>
+
+                                    @endcan
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
                         <div class="pagination justify-content-end">
-                            {!!$products->links()!!}
+                            {!! $products->links() !!}
+                        </div>
                         </div>
                     </div>
                 </div>

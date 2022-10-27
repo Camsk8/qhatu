@@ -1,3 +1,3 @@
 <div class="footer-left">
-    All rights reserved &copy; {{ date('Y') }}
+    Qhatu &copy; {{ date('Y') }}
 </div>

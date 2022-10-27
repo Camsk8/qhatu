@@ -25,7 +25,6 @@
                                             </div>                                            
                                         </div>                                    
                                     </div>
-                                    
                                     <div class="col-md-4 col-xl-4">
                                         <div class="card bg-c-green order-card">
                                             <div class="card-block">
@@ -39,16 +38,15 @@
                                             </div>
                                         </div>
                                     </div>                                                                
-                                    
                                     <div class="col-md-4 col-xl-4">
                                         <div class="card bg-c-pink order-card">
                                             <div class="card-block">
                                                 <h5>Productos</h5>                                               
                                                 @php
-                                                 use App\Models\Products;
-                                                $cant_products = Products::count();                                                
+                                                 use App\Models\products;
+                                                $cant_product = products::count();                                                
                                                 @endphp
-                                                <h2 class="text-right"><i class="fa fa-blog f-left"></i><span>{{$cant_products}}</span></h2>
+                                                <h2 class="text-right"><i class="fa fa-blog f-left"></i><span>{{$cant_product}}</span></h2>
                                                 <p class="m-b-0 text-right"><a href="/products" class="text-white">Ver más</a></p>
                                             </div>
                                         </div>
