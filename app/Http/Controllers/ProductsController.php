@@ -56,7 +56,7 @@ class ProductsController extends Controller
     
         Products::create($request->all());
     
-        return redirect()->route('productos.index');
+        return redirect()->route('products.index');
     }
 
     /**

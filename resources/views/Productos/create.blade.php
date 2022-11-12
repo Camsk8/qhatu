@@ -25,10 +25,10 @@
 
                     <form action="{{ route('products.store') }}" method="POST">
                         @csrf
-                        <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="row">
                                 <div class="form-group">
-                                   <label for="titulo">nombre</label>
+                                   <label for="nombre">nombre</label>
                                    <input type="text" name="nombre" class="form-control">
                                 </div>
                             </div>
