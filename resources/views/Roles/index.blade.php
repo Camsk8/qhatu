@@ -42,7 +42,7 @@
                                 </tbody>               
                             </table>
 
-                            <!-- Centramos la paginacion a la derecha -->
+                          
                             <div class="pagination justify-content-end">
                                 {!! $roles->links() !!} 
                             </div>                    

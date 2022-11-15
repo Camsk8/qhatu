@@ -31,36 +31,37 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                    <label for="nombre">Nombre</label>
-                                   <input type="text" name="nombre" class="form-control" value="{{ $product->nombre }}">
+                                   <input type="text" name="nombre" class="form-control" value="{{ $products->nombre }}">
                                 </div>
                             </div>
+                            
                             <div class="col-xs-12 col-sm-12 col-md-12">     
                                 <div class="form-group">
                                 <label for="valor">valor</label>
-                                <textarea type="number" class="form-control" name="valor" value="{{ $product->valor }}">                                
+                                <input type="number" class="form-control" name="valor" value="{{ $products->valor }}">                                
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">     
                                     <div class="form-group">
                                     <label for="text">Imagen</label>
-                                    <textarea type="text" class="form-control" name="imagen" value="{{ $product->imagen}}">                                
+                                    <input type="text" class="form-control" name="imagen" value="{{ $products->imagen}}">                                
                                     
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">     
                                         <div class="form-group">
                                         <label for="descripcion">Drescripcion</label>
-                                        <textarea type="text" class="form-control" name="descripcion" value="{{ $product->descripcion}}">                                
+                                        <input type="text" class="form-control" name="descripcion" value="{{ $products->descripcion}}">                                
                                         
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">     
                                             <div class="form-group">
                                             <label for="fechaInicio">fechaInicio</label>
-                                            <textarea type="date" class="form-control" name="fechaInicio" value="{{ $product->fechaInicio }}">                                
+                                            <input type="date" class="form-control" name="fechaInicio" value="{{ $products->fechaInicio }}">                                
                                             
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">     
                                                 <div class="form-group">
                                                 <label for="fechaFin">fechaFin</label>
-                                                <textarea type="date" class="form-control" name="fechaFin" value="{{ $product->fechaFin }}">                                
+                                                <input type="date" class="form-control" name="fechaFin" value="{{ $products->fechaFin }}">                                
                                                 
                                                 </div>
                             <br>

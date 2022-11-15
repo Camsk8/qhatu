@@ -76,8 +76,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit(Products $products ,$id)
+
     {
+        $products = Products::findOrFail($id);
         return view('productos.edit',compact('products'));
     }
 
@@ -88,19 +90,26 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Products $products,$id)
     {
-         request()->validate([
-            'nombre' => 'required',
-            'valor' => 'required',
-            'imagen' => 'required',
-            'descripcion' => 'required',
-            'fechaInicio' => 'required',
-            'fechaFin' => 'required',
-        ]);
-    
-        $products->update($request->all());
-        return redirect()->route('productos.index');
+        $products = Products::findOrFail($id);
+        $products->nombre=$request->input('nombre');
+        $products->valor=$request->input('valor');
+        $products->imagen=$request->input('imagen');
+        $products->descripcion=$request->input('descripcion');
+        $products->fechaInicio=$request->input('fechaInicio');
+        $products->fechaFin=$request->input('fechaFin');
+
+         //request()->validate([
+            //'nombre' => 'required',
+            //'valor' => 'required',
+            //'imagen' => 'required',
+           // 'descripcion' => 'required',
+            //'fechaInicio' => 'required',
+           // 'fechaFin' => 'required',    
+        $products->save();
+        //$products->update($request->all());
+        return redirect()->route('products.index');
     }
 
     /**
@@ -109,10 +118,12 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy(Products $product)
     {
-        $products->delete();
+       // $products=Products::findOrFail($id);
+
+        $product->delete();
     
-        return redirect()->route('productos.index');
+        return redirect()->route('products.index');
     }
 }

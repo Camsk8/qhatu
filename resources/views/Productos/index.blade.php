@@ -12,13 +12,13 @@
                         <div class="card-body">
                 
             
-                        @can('crear-blog')
+                        @can('crear-producto')
                         <a class="btn btn-warning" href="{{ route('products.create') }}">Nuevo</a>
                         @endcan
             
                         <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">                                     
-                                    <th style="display: none;">ID</th>
+                                    <th style="display: none;">id</th>
                                     <th style="color:#fff;">nombre</th>
                                     <th style="color:#fff;">valor</th>                                    
                                     <th style="color:#fff;">imagen</th>   
@@ -43,12 +43,15 @@
                                         @can('editar-producto')
                                         <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Editar</a>
                                     @endcan
-                                    
-                                    <form action="{{ route('products.destroy',$product->id) }}" method="POST">                                        
+                                                                                                                 
                                     @can('borrar-producto')
-                                    <a class="btn btn-danger" href="{{ route('products.destroy',$product->id) }}"></a>
-
+                                    
+                                  <form action="{{route('products.destroy',($product->id))}}" method="POST" class="formEliminar">
+                                  @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm" href="{{ route('products.destroy',$product->id) }}">Borrar</button>
                                     @endcan
+
                                     </form>
                                 </td>
                             </tr>
@@ -63,6 +66,34 @@
                     </div>
                 </div>
             </div>
+<script>
+    (function () {
+  'use strict'
+  //debemos crear la clase formEliminar dentro del form del boton borrar
+  //recordar que cada registro a eliminar esta contenido en un form  
+  var forms = document.querySelectorAll('.formEliminar')
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {        
+          event.preventDefault()
+          event.stopPropagation()        
+          Swal.fire({
+                title: '¿Confirma la eliminación del registro?',        
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#20c997',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    Swal.fire('¡Eliminado!', 'El registro ha sido eliminado exitosamente.','success');
+                }
+            })                      
+      }, false)
+    })
+})()
+</script>
         </div>
     </section>
 @endsection
