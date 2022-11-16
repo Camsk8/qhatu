@@ -43,7 +43,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">     
                                     <div class="form-group">
                                     <label for="text">Imagen</label>
-                                    <input type="text" class="form-control" name="imagen" value="{{ $products->imagen}}">                                
+                                    <input type="file" class="form-control" name="imagen" value="{{ $products->imagen}}">                                
                                     
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">     
